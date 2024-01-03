@@ -1,0 +1,9 @@
+environment:
+  test:
+    database:
+      host: localhost
+      port: 5432
+      user: distilleries_of_scotland_user_test
+      password: test_password
+      name: distilleriesdb_test
+      connection_string: "user=distilleries_of_scotland_user_test dbname=distilleriesdb_test host=localhost port=5432 password=test_password sslmode=disable"

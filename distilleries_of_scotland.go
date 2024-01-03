@@ -3,17 +3,25 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleriesdb"
+	"github.com/spf13/viper"
 )
 
 func main() {
-	connStr := os.Getenv("CONN_STR")
-	fmt.Println("Connection String:", connStr)
+	viper.SetConfigFile("config/config_dev.yml")
 
+	// Read the configuration file
+	if err := viper.ReadInConfig(); err != nil {
+		log.Fatal(err)
+	}
+
+	// Get the connection string from the configuration
+	connStr := viper.GetString("environment.development.database.connection_string")
+
+	fmt.Println("Connection String:", connStr)
 	if connStr == "" {
-		log.Fatal("CONN_STR environment variable is not set.")
+		log.Fatal("Connection string not found in the configuration.")
 	}
 
 	db, err := distilleriesdb.NewDistilleriesDb(connStr)
