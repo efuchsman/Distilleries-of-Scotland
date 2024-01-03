@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleriesdb"
 	"github.com/spf13/viper"
@@ -14,6 +15,12 @@ func main() {
 	// Read the configuration file
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatal(err)
+	}
+
+	// Check if the connection string is provided as an environment variable
+	if connStr := os.Getenv("CONN_STR"); connStr != "" {
+		fmt.Println("Using connection string from environment variable")
+		return
 	}
 
 	// Get the connection string from the configuration

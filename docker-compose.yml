@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: distilleries_of_scotland_user_dev
+      POSTGRES_PASSWORD: dev_password
+    volumes:
+      - ./config:/app/config
+    ports:
+      - "5432:5432"
+
+  distilleries_of_scotland:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - CONN_STR=postgres://distilleries_of_scotland_user_dev:dev_password@postgres:5432/distilleriesdb_dev?sslmode=disable
