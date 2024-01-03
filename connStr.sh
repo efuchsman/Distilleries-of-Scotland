@@ -1,11 +1,20 @@
 #!/bin/bash
 
 LOG_FILE="setup_log.txt"
-export PG_HOST="localhost"  # Set your PostgreSQL host here
+PG_HOST="localhost"        # Set your PostgreSQL host here
+PG_PORT="5432"             # Set your PostgreSQL port here
+PG_DATABASE="distilleries_db"
+PG_SUPERUSER="distilleries_of_scotland_user"
+PG_PASSWORD="ultra_secret_password"
+
+export PGHOST="$PG_HOST"
+export PGPORT="$PG_PORT"
+export PGDATABASE="$PG_DATABASE"
+export PGSUPERUSER="$PG_SUPERUSER"
+export PGPASSWORD="$PG_PASSWORD"
 
 # Function to log messages
 log_message() {
-  rm -f "$LOG_FILE"
   echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" > "$LOG_FILE"
 }
 
@@ -49,24 +58,21 @@ create_database() {
 }
 
 create_postgres_superuser() {
-  superuser="distilleries_of_scotland_user"
-  password="ultra_secret_password"
-
   # Check if a superuser already exists
-  if psql -h "$PG_HOST" -tAc "SELECT COUNT(*) FROM pg_user WHERE usename = '$superuser' AND usecreatedb AND usesuper;" | grep -qw 0; then
+  if psql -h "$PG_HOST" -p "$PG_PORT" -tAc "SELECT COUNT(*) FROM pg_user WHERE usename = '$PG_SUPERUSER' AND usecreatedb AND usesuper;" | grep -qw 0; then
     # Check if PostgreSQL is running
     if brew services list | grep -q "postgresql"; then
       # Create superuser and set it as a member of 'distilleries_db'
-      sudo -u postgres psql -h "$PG_HOST" -c "CREATE USER $superuser WITH PASSWORD '$password' SUPERUSER;"
-      sudo -u postgres psql -h "$PG_HOST" -c "ALTER USER $superuser WITH CREATEDB;"
-      sudo -u postgres psql -h "$PG_HOST" -c "GRANT ALL PRIVILEGES ON DATABASE distilleries_db TO $superuser;"
+      sudo -u postgres psql -h "$PG_HOST" -p "$PG_PORT" -c "CREATE USER $PG_SUPERUSER WITH PASSWORD '$PG_PASSWORD' SUPERUSER;"
+      sudo -u postgres psql -h "$PG_HOST" -p "$PG_PORT" -c "ALTER USER $PG_SUPERUSER WITH CREATEDB;"
+      sudo -u postgres psql -h "$PG_HOST" -p "$PG_PORT" -c "GRANT ALL PRIVILEGES ON DATABASE $PG_DATABASE TO $PG_SUPERUSER;"
 
-      log_message "Superuser '$superuser' created successfully."
+      log_message "Superuser '$PG_SUPERUSER' created successfully."
     else
       log_message "Error: PostgreSQL service is not running. Please start the service and run the script again."
     fi
   else
-    log_message "Superuser '$superuser' already exists. Skipping creation."
+    log_message "Superuser '$PG_SUPERUSER' already exists. Skipping creation."
   fi
 }
 
@@ -91,5 +97,13 @@ else
   log_message "Error: Unable to install PostgreSQL. Please check the setup_log.txt file for details."
 fi
 
+export PGHOST="$PG_HOST"
+export PGPORT="$PG_PORT"
+export PGDATABASE="$PG_DATABASE"
+export PGSUPERUSER="$PG_SUPERUSER"
+export PGPASSWORD="$PG_PASSWORD"
+# Connection String
+export CONN_STR="user=$PG_SUPERUSER dbname=$PG_DATABASE host=$PG_HOST port=$PG_PORT password=$PG_PASSWORD sslmode=disable"
 echo "PGHOST is set to: $PG_HOST"
+echo $CONN_STR
 echo "Setup complete."
