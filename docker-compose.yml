@@ -17,8 +17,8 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8080:8080"
+      - "8000:8000"
     depends_on:
       - db
     environment:
-      - CONN_STR=postgres://distilleries_of_scotland_user_dev:dev_password@postgres:5432/distilleriesdb_dev?sslmode=disable
+      - CONN_STR=postgres://distilleries_of_scotland_user_dev:dev_password@db:5432/distilleriesdb_dev?sslmode=disable

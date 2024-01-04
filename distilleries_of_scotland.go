@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleries"
@@ -11,6 +12,13 @@ import (
 )
 
 func main() {
+	port := 8000 // Change this to the desired port
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello, World!")
+	})
+	fmt.Printf("Server is running on :%d\n", port)
+	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+
 	viper.SetConfigFile("config/config_dev.yml")
 
 	// Read the configuration file
@@ -50,5 +58,4 @@ func main() {
 	if err = dis.SeedRegions(filePath); err != nil {
 		log.Fatalf("Error seeding regions to the database: %v", err)
 	}
-
 }
