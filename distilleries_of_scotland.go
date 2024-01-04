@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/efuchsman/distilleries_of_scotland/internal/distilleries"
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleriesdb"
 	"github.com/spf13/viper"
 )
@@ -39,8 +40,15 @@ func main() {
 	defer db.Close()
 
 	// Create the Region table
-	err = db.CreateRegionTable()
+	err = db.CreateRegionsTable()
 	if err != nil {
 		log.Fatalf("FAILURE TO CREATE REGION TABLE: %v", err)
 	}
+
+	dis := distilleries.NewClient(db)
+	filePath := "data/regions.json"
+	if err = dis.SeedRegions(filePath); err != nil {
+		log.Fatalf("Error seeding regions to the database: %v", err)
+	}
+
 }
