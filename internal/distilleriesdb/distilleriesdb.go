@@ -3,10 +3,17 @@ package distilleriesdb
 import (
 	"database/sql"
 	"fmt"
+	"sync"
 )
+
+type Client interface {
+	GetOrCreateRegion(regionName string, description string) (*Region, error)
+	GetRegionByName(regionName string) (*Region, error)
+}
 
 type DistilleriesDB struct {
 	Conn *sql.DB
+	mu   sync.Mutex
 }
 
 func NewDistilleriesDb(connStr string) (*DistilleriesDB, error) {
@@ -21,7 +28,10 @@ func NewDistilleriesDb(connStr string) (*DistilleriesDB, error) {
 	}
 
 	fmt.Println("Connected to the database")
-	return &DistilleriesDB{Conn: db}, nil
+	return &DistilleriesDB{
+		Conn: db,
+		mu:   sync.Mutex{},
+	}, nil
 }
 
 // Close closes the database connection
