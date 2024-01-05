@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	disdb "github.com/efuchsman/distilleries_of_scotland/internal/distilleriesdb"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 )
@@ -14,30 +13,33 @@ type Region struct {
 	Description string `json:"description"`
 }
 
-func (c *Client) AddRegion(newRegion *Region) (*disdb.Region, error) {
-	fields := log.Fields{"Region Name": newRegion.RegionName, "Region Description": newRegion.Description}
+func (c *Client) AddRegion(regionName string, regionDescription string) (*Region, error) {
+	fields := log.Fields{"Region Name": regionName, "Region Description": regionDescription}
 
-	region, err := c.db.GetOrCreateRegion(newRegion.RegionName, newRegion.Description)
+	region, err := c.db.GetOrCreateRegion(regionName, regionDescription)
 	if err != nil {
 		log.WithFields(fields).Errorf("Error creating region: %+v", err)
+		return nil, errors.WithStack(err)
+	}
+	distilleryRegion := &Region{
+		RegionName:  region.RegionName,
+		Description: region.Description,
 	}
 
-	return region, nil
+	return distilleryRegion, nil
 }
 
 // Helper which builds a cities slice
-func (c *Client) buildRegions(filePath string) ([]*Region, error) {
+func buildRegions(filePath string) ([]*Region, error) {
 	jsonData, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
 
-	// Create a slice to hold the cities
 	var regions []*Region
-
-	// Unmarshal the JSON data into the cities slice
 	err = json.Unmarshal(jsonData, &regions)
 	if err != nil {
+		log.Errorf("Error building regions slice from file: %v", err)
 		return nil, errors.WithStack(err)
 	}
 
@@ -45,13 +47,14 @@ func (c *Client) buildRegions(filePath string) ([]*Region, error) {
 }
 
 func (c *Client) SeedRegions(filePath string) error {
-	regions, err := c.buildRegions(filePath)
+	regions, err := buildRegions(filePath)
 	if err != nil {
 		log.Errorf("Error seeding Regions: %v", err)
+		return errors.WithStack(err)
 	}
 
 	for _, region := range regions {
-		_, err := c.AddRegion(region)
+		_, err := c.AddRegion(region.RegionName, region.Description)
 		if err != nil {
 			return errors.WithStack(err)
 		}
