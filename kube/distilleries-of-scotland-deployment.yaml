@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: distilleries-of-scotland-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: distilleries-of-scotland
+  template:
+    metadata:
+      labels:
+        app: distilleries-of-scotland
+    spec:
+      containers:
+        - name: distilleries-of-scotland-container
+          image: efuchsman/distilleries_of_scotland-distilleries_of_scotland:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: CONN_STR
+              value: "postgres://distilleries_of_scotland_user_dev:dev_password@postgres-service:5432/distilleriesdb_dev?sslmode=disable"
