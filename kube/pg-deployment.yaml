@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres-container
+          image: efuchsman/distilleries_of_scotland-distilleries_of_scotland:latest
+          env:
+            - name: POSTGRES_USER
+              value: distilleries_of_scotland_user_dev
+            - name: POSTGRES_PASSWORD
+              value: dev_password
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-volume
+      volumes:
+        - name: postgres-volume
+          emptyDir: {}
