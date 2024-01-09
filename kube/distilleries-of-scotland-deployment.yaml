@@ -19,4 +19,7 @@ spec:
             - containerPort: 8000
           env:
             - name: CONN_STR
-              value: "postgres://distilleries_of_scotland_user_dev:dev_password@postgres-service:5432/distilleriesdb_dev?sslmode=disable"
+              valueFrom:
+                secretKeyRef:
+                  name: distilleries-db-secret
+                  key: connection-string
