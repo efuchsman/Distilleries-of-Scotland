@@ -59,6 +59,11 @@ func main() {
 
 	// Setup the HTTP server and router
 	router := mux.NewRouter()
+
+	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Welcome to Distilleries of Scotland API")
+	})
+
 	distilleryRegions := regions.NewHandler(dis)
 	router.HandleFunc("/regions", distilleryRegions.Get).Methods("GET")
 
