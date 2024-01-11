@@ -6,6 +6,9 @@ type TestClient struct {
 
 	GetRegionByNameData *Region
 	GetRegionByNameErr  error
+
+	GetRegionsData []Region
+	GetRegionsErr  error
 }
 
 func (c TestClient) GetOrCreateRegion(regionName string, description string) (*Region, error) {
@@ -14,4 +17,8 @@ func (c TestClient) GetOrCreateRegion(regionName string, description string) (*R
 
 func (c TestClient) GetRegionByName(regionName string) (*Region, error) {
 	return c.GetRegionByNameData, c.GetRegionByNameErr
+}
+
+func (c TestClient) GetRegions() ([]Region, error) {
+	return c.GetRegionsData, c.GetRegionsErr
 }

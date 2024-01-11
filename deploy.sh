@@ -1,3 +1,9 @@
+# Start Minikube (if not already running)
+minikube start --profile distilleries-of-scotland
+
+# Set the Minikube context
+kubectl config use-context distilleries-of-scotland
+
 DOCKER_IMAGE_NAME="efuchsman/distilleries_of_scotland-distilleries_of_scotland"
 DOCKER_IMAGE_TAG="latest"
 

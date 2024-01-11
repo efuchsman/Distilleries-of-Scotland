@@ -15,11 +15,8 @@ spec:
       containers:
         - name: distilleries-of-scotland-container
           image: efuchsman/distilleries_of_scotland-distilleries_of_scotland:latest
-          ports:
-            - containerPort: 8000
           env:
             - name: CONN_STR
-              valueFrom:
-                secretKeyRef:
-                  name: distilleries-db-secret
-                  key: connection-string
+              value: "postgres://distilleries_of_scotland_user_dev:dev_password@postgres-service:5432/distilleriesdb_dev?sslmode=disable"
+          ports:
+            - containerPort: 8000

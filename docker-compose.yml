@@ -5,10 +5,13 @@ services:
     environment:
       POSTGRES_USER: distilleries_of_scotland_user_dev
       POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: distilleriesdb_dev
     volumes:
       - ./config:/app/config
     ports:
       - "5432:5432"
+    networks:
+      - distilleries_of_scotland_network
 
   distilleries_of_scotland:
     build:
@@ -22,3 +25,8 @@ services:
       - db
     environment:
       - CONN_STR=postgres://distilleries_of_scotland_user_dev:dev_password@db:5432/distilleriesdb_dev?sslmode=disable
+    networks:
+      - distilleries_of_scotland_network
+
+networks:
+  distilleries_of_scotland_network:

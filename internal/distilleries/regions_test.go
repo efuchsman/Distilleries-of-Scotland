@@ -121,3 +121,40 @@ func TestBuildRegions(t *testing.T) {
 		})
 	}
 }
+
+func TestGetRegionByName(t *testing.T) {
+	testCases := []struct {
+		description    string
+		regionName     string
+		dbclient       distilleriesdb.TestClient
+		expectedOutput *Region
+		expectedErr    error
+	}{
+		{
+			description: "Success: Region is returned",
+			regionName:  "Test Region",
+			dbclient: distilleriesdb.TestClient{
+				GetRegionByNameData: testDbRegion,
+			},
+			expectedOutput: &Region{RegionName: "Test Region", Description: "Test Description"},
+			expectedErr:    nil,
+		},
+	}
+	for i, tc := range testCases {
+		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+			t.Log(tc.description)
+			t.Parallel()
+
+			c := NewClient(tc.dbclient)
+
+			newRegion, err := c.GetRegionByName(tc.regionName)
+			if tc.expectedErr != nil {
+				assert.Error(t, err, tc.description)
+				return
+			}
+
+			assert.NoError(t, err, tc.description)
+			assert.Equal(t, tc.expectedOutput, newRegion)
+		})
+	}
+}

@@ -92,3 +92,34 @@ func (db *DistilleriesDB) GetRegionByName(regionName string) (*Region, error) {
 
 	return &region, nil
 }
+
+func (db *DistilleriesDB) GetRegions() ([]Region, error) {
+	query := `
+			SELECT region_name, description
+			FROM Regions;`
+
+	rows, err := db.Conn.Query(query)
+	if err != nil {
+		log.Errorf("failed to get regions: %v", err)
+		return nil, err
+	}
+	defer rows.Close()
+
+	var regions []Region
+
+	for rows.Next() {
+		var region Region
+		if err := rows.Scan(&region.RegionName, &region.Description); err != nil {
+			log.Errorf("failed to scan region row: %v", err)
+			return nil, err
+		}
+		regions = append(regions, region)
+	}
+
+	if err := rows.Err(); err != nil {
+		log.Errorf("error iterating over regions rows: %v", err)
+		return nil, err
+	}
+
+	return regions, nil
+}

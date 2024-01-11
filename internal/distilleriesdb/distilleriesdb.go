@@ -9,6 +9,7 @@ import (
 type Client interface {
 	GetOrCreateRegion(regionName string, description string) (*Region, error)
 	GetRegionByName(regionName string) (*Region, error)
+	GetRegions() ([]Region, error)
 }
 
 type DistilleriesDB struct {
