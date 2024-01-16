@@ -9,10 +9,8 @@ import (
 type Distillery struct {
 	DistilleryName string `json:"distillery_name"`
 	RegionName     string `json:"region_name"`
-	Latitude       string `json:"latitude"`
-	Longitude      string `json:"longitude"`
 	Geo            string `json:"geo"`
-	City           string `json:"city"`
+	Town           string `json:"town"`
 	ParentCompany  string `json:"parent_company"`
 }
 
@@ -22,10 +20,8 @@ func (db *DistilleriesDB) CreateDistilleriesTable() error {
 					distillery_id SERIAL PRIMARY KEY,
 					distillery_name VARCHAR(255) NOT NULL,
 					region_name VARCHAR(255) REFERENCES Regions(region_name),
-					latitude VARCHAR(255),
-					longitude VARCHAR(255),
 					geo VARCHAR(255),
-					city VARCHAR(255),
+					town VARCHAR(255),
 					parent_company VARCHAR(255),
 					UNIQUE (distillery_name)
 			);`

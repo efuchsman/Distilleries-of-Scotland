@@ -1,0 +1,723 @@
+[
+  {
+    "distillery_name": "Aberlour",
+    "region_name": "Speyside",
+    "geo": "57.467222,-3.228889",
+    "town": "Aberlour",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Allt-A-Bhainne",
+    "region_name": "Speyside",
+    "geo": "57.394722,-3.206667",
+    "town": "Dufftown",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Auchroisk",
+    "region_name": "Speyside",
+    "geo": "57.548,-3.11553",
+    "town": "Mulben",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Aultmore",
+    "region_name": "Speyside",
+    "geo": "57.5673,-3.0021",
+    "town": "Keith",
+    "parent_company": "Bacardi"
+  },
+  {
+    "distillery_name": "Balmenach",
+    "region_name": "Speyside",
+    "geo": "57.326708,-3.533908",
+    "town": "Cromdale",
+    "parent_company": "ThaiBev"
+  },
+  {
+    "distillery_name": "Balvenie",
+    "region_name": "Speyside",
+    "geo": "57.459194,-3.128583",
+    "town": "Dufftown",
+    "parent_company": "William Grant & Sons"
+  },
+  {
+    "distillery_name": "BenRiach",
+    "region_name": "Speyside",
+    "geo": "57.611944,-3.292778",
+    "town": "Elgin",
+    "parent_company": "Brown-Forman"
+  },
+  {
+    "distillery_name": "Benrinnes",
+    "region_name": "Speyside",
+    "geo": "57.44188,-3.23686",
+    "town": "Aberlour",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Benromach",
+    "region_name": "Speyside",
+    "geo": "57.614131,-3.620039",
+    "town": "Forres",
+    "parent_company": "Gordon & MacPhail"
+  },
+  {
+    "distillery_name": "Braeval",
+    "region_name": "Speyside",
+    "geo": "57.271389,-3.259111",
+    "town": "Chapeltown",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Cardhu",
+    "region_name": "Speyside",
+    "geo": "57.470472,-3.350056",
+    "town": "Archiestown",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Cragganmore",
+    "region_name": "Speyside",
+    "geo": "57.410278,-3.395",
+    "town": "Ballindalloch",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Craigellachie",
+    "region_name": "Speyside",
+    "geo": "57.488611,-3.184722",
+    "town": "Craigellachie",
+    "parent_company": "Bacardi"
+  },
+  {
+    "distillery_name": "Dailuaine",
+    "region_name": "Speyside",
+    "geo": ":57.453139,-3.272944",
+    "town": "Charlestown-of-Aberlour",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Dalmunach",
+    "region_name": "Speyside",
+    "geo": "57.454878,-3.300533",
+    "town": "Carron",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Dufftown",
+    "region_name": "Speyside",
+    "geo": "57.435748,-3.12782",
+    "town": "Dufftown",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Glen Elgin",
+    "region_name": "Speyside",
+    "geo": "57.599069,-3.277561",
+    "town": "Fogwatt",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Glen Grant",
+    "region_name": "Speyside",
+    "geo": "57.532,-3.210797",
+    "town": "Rothes",
+    "parent_company": "Campari Group"
+  },
+  {
+    "distillery_name": "Glen Keith",
+    "region_name": "Speyside",
+    "geo": "57.546389,-2.957222",
+    "town": "Keith",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Glen Moray",
+    "region_name": "Speyside",
+    "geo": "57.644444,-3.341111",
+    "town": "Elgin",
+    "parent_company": "La Martiniquaise"
+  },
+  {
+    "distillery_name": "Glen Spey",
+    "region_name": "Speyside",
+    "geo": "57.525611,-3.210111",
+    "town": "Rothes",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Glenallachie",
+    "region_name": "Speyside",
+    "geo": "57.45518,-3.22871",
+    "town": "Aberlour",
+    "parent_company": "The GlenAllachie Distillers Co Limited"
+  },
+  {
+    "distillery_name": "Glenburgie",
+    "region_name": "Speyside",
+    "geo": "57.62179,-3.51675",
+    "town": "Alves",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Glendullan",
+    "region_name": "Speyside",
+    "geo": "57.448056,-3.118611",
+    "town": "Dufftown",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Glenfarclas",
+    "region_name": "Speyside",
+    "geo": "57.427,-3.316361",
+    "town": "Ballindalloch",
+    "parent_company": "J. & G. Grant"
+  },
+  {
+    "distillery_name": "Glennfiddich",
+    "region_name": "Speyside",
+    "geo": "57.453611,-3.128611",
+    "town": "Dufftown",
+    "parent_company": "William Grant & Sons"
+  },
+  {
+    "distillery_name": "The Glenlivet",
+    "region_name": "Speyside",
+    "geo": "57.343056,-3.338694",
+    "town": "Ballindalloch",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Glenlossie",
+    "region_name": "Speyside",
+    "geo": "57.5989,-3.3183",
+    "town": "Elgin",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Glenrothes",
+    "region_name": "Speyside",
+    "geo": "57.52675,-3.216583",
+    "town": "Rothes",
+    "parent_company": "Erdington"
+  },
+  {
+    "distillery_name": "Glentauchers",
+    "region_name": "Speyside",
+    "geo": "57.534167,-3.050278",
+    "town": "Mulben",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Inchgower",
+    "region_name": "Speyside",
+    "geo": "57.662392,-2.96425",
+    "town": "Buckie",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Kininvie",
+    "region_name": "Speyside",
+    "geo": "57.466222,-3.130028",
+    "town": "Dufftown",
+    "parent_company": "William Grant & Sons"
+  },
+  {
+    "distillery_name": "Knockando",
+    "region_name": "Speyside",
+    "geo": "57.457,-3.343944",
+    "town": "Knockando",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Knockdhu",
+    "region_name": "Speyside",
+    "geo": "57.563333,-2.759167",
+    "town": "Knock",
+    "parent_company": "ThaiBev"
+  },
+  {
+    "distillery_name": "Linkwood",
+    "region_name": "Speyside",
+    "geo": "57.635448,-3.286238",
+    "town": "Elgin",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Longmorn",
+    "region_name": "Speyside",
+    "geo": "57.608153,-3.282508",
+    "town": "Longmorn",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Macallan",
+    "region_name": "Speyside",
+    "geo": "57.484372,-3.207578",
+    "town": "Craigellachie",
+    "parent_company": "Erdington"
+  },
+  {
+    "distillery_name": "Mannochmore",
+    "region_name": "Speyside",
+    "geo": "57.598778,-3.319972",
+    "town": "Elgin",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Miltonduff",
+    "region_name": "Speyside",
+    "geo": "57.623714,-3.369283",
+    "town": "Elgin",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Mortlach",
+    "region_name": "Speyside",
+    "geo": "57.442778, -3.122778",
+    "town": "Dufftown",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Roseisle",
+    "region_name": "Speyside",
+    "geo": "57.668333, -3.473333",
+    "town": "Roseisle",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Speyburn",
+    "region_name": "Speyside",
+    "geo": "57.536667, -3.215278",
+    "town": "Rothes",
+    "parent_company": "ThaiBev"
+  },
+  {
+    "distillery_name": "Speyside",
+    "region_name": "Speyside",
+    "geo": "57.068666392 -3.986329388",
+    "town": "Kingussie",
+    "parent_company": "Harvey's of Edinburgh"
+  },
+  {
+    "distillery_name": "Strathisla",
+    "region_name": "Speyside",
+    "geo": "57.54649, -2.95427",
+    "town": "Keith",
+    "parent_company": "Pernod Ricard"
+  },
+  {
+    "distillery_name": "Strathmill",
+    "region_name": "Speyside",
+    "geo": "57.540417, -2.961222",
+    "town": "Keith",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Tamdhu",
+    "region_name": "Speyside",
+    "geo": "57.459028, -3.353611",
+    "town": "Knockando",
+    "parent_company": "Ian MacLeod Distillers"
+  },
+  {
+    "distillery_name": "Tamnavulin",
+    "region_name": "Speyside",
+    "geo": "57.3175, -3.307778",
+    "town": "Ballindalloch",
+    "parent_company": "Alliance Global"
+  },
+  {
+    "distillery_name": "Tomintoul",
+    "region_name": "Speyside",
+    "geo": "57.312012, -3.412366",
+    "town": "Kirkmichael",
+    "parent_company": "Angus Dundee"
+  },
+  {
+    "distillery_name": "Tormore",
+    "region_name": "Speyside",
+    "geo": "57.3975, -3.408833",
+    "town": "Grantown",
+    "parent_company": "Elixir Distillers"
+  },
+  {
+    "distillery_name": "Ailsa Bay",
+    "region_name": "Lowland",
+    "geo": "55.260706,-4.83338",
+    "town": "Girvan",
+    "parent_company": "William Grant & Sons"
+  },
+  {
+    "distillery_name": "Annandale",
+    "region_name": "Lowland",
+    "geo": "55.001681, -3.255708",
+    "town": "Annan, Dumfries and Galloway",
+    "parent_company": "Annandale Distillery Company"
+  },
+  {
+    "distillery_name": "Auchentoshan",
+    "region_name": "Lowland",
+    "geo": "55.922, -4.439",
+    "town": "Dalmir",
+    "parent_company": "Beam Suntory"
+  },
+  {
+    "distillery_name": "Bladnoch",
+    "region_name": "Lowland",
+    "geo": "54.858333, -4.461944",
+    "town": "Wigtown",
+    "parent_company": "David Prior"
+  },
+  {
+    "distillery_name": "Borders",
+    "region_name": "Lowland",
+    "geo": "55.42452, -2.78887",
+    "town": "Hawick",
+    "parent_company": "The Three Stills Company"
+  },
+  {
+    "distillery_name": "Clydeside",
+    "region_name": "Lowland",
+    "geo": "55.862364, -4.296986",
+    "town": "Glasgow",
+    "parent_company": "Morrison Glasgow Distillers"
+  },
+  {
+    "distillery_name": "Daftmill",
+    "region_name": "Lowland",
+    "geo": "56.29725, -3.103983",
+    "town": "Cupar",
+    "parent_company": "Hotaling & Co."
+  },
+  {
+    "distillery_name": "Eden Mill",
+    "region_name": "Lowland",
+    "geo": "56.363964, -2.892069",
+    "town": "Guardbridge",
+    "parent_company": "Inverleith LLP"
+  },
+  {
+    "distillery_name": "Glasgow",
+    "region_name": "Lowland",
+    "geo": "55.863287, -4.36214",
+    "town": "Glasgow",
+    "parent_company": "Glasgow Distillery Co."
+  },
+  {
+    "distillery_name": "Glenkinchie",
+    "region_name": "Lowland",
+    "geo": "55.891444, -2.891528",
+    "town": "Pencaitland",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Kingsbarns",
+    "region_name": "Lowland",
+    "geo": "56.288043316957605, -2.642389153967282",
+    "town": "Kingsbarns",
+    "parent_company": "Wemyss Malts"
+  },
+  {
+    "distillery_name": "Lindores Abbey",
+    "region_name": "Lowland",
+    "geo": "56.3518, -3.2254",
+    "town": "Newburgh",
+    "parent_company": "Mckenzie Smith Family"
+  },
+  {
+    "distillery_name": "Lochlea",
+    "region_name": "Lowland",
+    "geo": "55.540081979761595, -4.450125838623029",
+    "town": "Craigie",
+    "parent_company": "Lochlea Ltd."
+  },
+  {
+    "distillery_name": "Aberfeldy",
+    "region_name": "Highland",
+    "geo": "56.624444, -3.849722",
+    "town": "Aberfeldy",
+    "parent_company": "Bacardi"
+  },
+  {
+    "distillery_name": "Ardmore",
+    "region_name": "Highland",
+    "geo": "57.351111, -2.745",
+    "town": "Kennethmont",
+    "parent_company": "Beam Suntory"
+  },
+  {
+    "distillery_name": "Balblair",
+    "region_name": "Highland",
+    "geo": "57.840472, -4.180417",
+    "town": "Edderton",
+    "parent_company": "ThaiBev"
+  },
+  {
+    "distillery_name": "Ben Nevis",
+    "region_name": "Highland",
+    "geo": "56.835144, -5.073886",
+    "town": "Fort William",
+    "parent_company": "Asahi Group Holdings, Ltd."
+  },
+  {
+    "distillery_name": "Blair Athol",
+    "region_name": "Highland",
+    "geo": "56.698472, -3.720833",
+    "town": "Pitlochry",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Clynelish",
+    "region_name": "Highland",
+    "geo": "58.024583, -3.868194",
+    "town": "Brora",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Dalmore",
+    "region_name": "Highland",
+    "geo": "57.688411, -4.239481",
+    "town": "Alness",
+    "parent_company": "Alliance Global"
+  },
+  {
+    "distillery_name": "Dalwhinnie",
+    "region_name": "Highland",
+    "geo": "56.940128, -4.238061",
+    "town": "Dalwhinnie",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Deanston",
+    "region_name": "Highland",
+    "geo": "56.189278, -4.071417",
+    "town": "Deanston",
+    "parent_company": "Heineken"
+  },
+  {
+    "distillery_name": "Edradour",
+    "region_name": "Highland",
+    "geo": "56.700894, -3.702814",
+    "town": "Pitlochry",
+    "parent_company": "Signatory Vintage Scotch Whisky Company"
+  },
+  {
+    "distillery_name": "glencadam",
+    "region_name": "Highland",
+    "geo": "56.736508, -2.652811",
+    "town": "Brechin",
+    "parent_company": "Angus Dundee"
+  },
+  {
+    "distillery_name": "Glendronach",
+    "region_name": "Highland",
+    "geo": "57.4847, -2.6255",
+    "town": "Forgue",
+    "parent_company": "Brown-Forman"
+  },
+  {
+    "distillery_name": "Glen Garioch",
+    "region_name": "Highland",
+    "geo": "57.338519, -2.319358",
+    "town": "Aberdeenshire",
+    "parent_company": "Beam Suntory"
+  },
+  {
+    "distillery_name": "Glengoyne",
+    "region_name": "Highland",
+    "geo": "56.01403, -4.36378",
+    "town": "Dumgoyne",
+    "parent_company": "Ian MacLeod Distillers"
+  },
+  {
+    "distillery_name": "Glenmorangie",
+    "region_name": "Highland",
+    "geo": "57.825889, -4.078",
+    "town": "Tain",
+    "parent_company": "Louis Vuitton Moet Hennessy"
+  },
+  {
+    "distillery_name": "Glen Ord",
+    "region_name": "Highland",
+    "geo": "57.522222, -4.475556",
+    "town": "Ross-shire",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Glenturret",
+    "region_name": "Highland",
+    "geo": "56.389444, -3.853889",
+    "town": "Crieff",
+    "parent_company": "Lalique Group"
+  },
+  {
+    "distillery_name": "Loch Lomond",
+    "region_name": "Highland",
+    "geo": "55.994294, -4.577289",
+    "town": "Loch Lomond",
+    "parent_company": "Loch Lomond Group"
+  },
+  {
+    "distillery_name": "Macduff",
+    "region_name": "Highland",
+    "geo": "57.657881, -2.51275",
+    "town": "Macduff",
+    "parent_company": "Bacardi"
+  },
+  {
+    "distillery_name": "Millburn",
+    "region_name": "Highland",
+    "geo": "57.482417, -4.205778",
+    "town": "Inverness",
+    "parent_company": "Guinness"
+  },
+  {
+    "distillery_name": "Oban",
+    "region_name": "Highland",
+    "geo": "56.4147, -5.4728",
+    "town": "Oban",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Fettercairn",
+    "region_name": "Highland",
+    "geo": "56.8535, -2.5825",
+    "town": "Fettercairn",
+    "parent_company": "Alliance Global"
+  },
+  {
+    "distillery_name": "Old Pulteney",
+    "region_name": "Highland",
+    "geo": "58.434444, -3.084722",
+    "town": "Pulteneytown",
+    "parent_company": "ThaiBev"
+  },
+  {
+    "distillery_name": "Royal Brackla",
+    "region_name": "Highland",
+    "geo": "57.539692, -3.905467",
+    "town": "Nairn",
+    "parent_company": "Bacardi"
+  },
+  {
+    "distillery_name": "Royla Lochnagar",
+    "region_name": "Highland",
+    "geo": "57.03, -3.209167",
+    "town": "Lochnagar",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Teanich",
+    "region_name": "Highland",
+    "geo": "57.691583, -4.260639",
+    "town": "Alness",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Tullibardine",
+    "region_name": "Highland",
+    "geo": "56.257778, -3.785556",
+    "town": "Blackford",
+    "parent_company": "Picard Vins & Spiritueux"
+  },
+  {
+    "distillery_name": "Tomatin",
+    "region_name": "Highland",
+    "geo": "57.338889, -4.009167",
+    "town": "Inverness",
+    "parent_company": "Takara Shuzo"
+  },
+  {
+    "distillery_name": "Wolfburn",
+    "region_name": "Highland",
+    "geo": "58.595278, -3.551389",
+    "town": "Thurso",
+    "parent_company": "Aurora Brewing"
+  },
+  {
+    "distillery_name": "Glen Scotia",
+    "region_name": "Campbeltown",
+    "geo": "55.429514, -5.604236",
+    "town": "Campbeltown",
+    "parent_company": "Loch Lomond Group"
+  },
+  {
+    "distillery_name": "Glengyle",
+    "region_name": "Campbeltown",
+    "geo": "55.427208, -5.61095",
+    "town": "Campbeltown",
+    "parent_company": "J. & A. Mitchell and Co."
+  },
+  {
+    "distillery_name": "Springbank",
+    "region_name": "Campbeltown",
+    "geo": "55.425417, -5.608861",
+    "town": "Campbeltown",
+    "parent_company": "J. & A. Mitchell and Co."
+  },
+  {
+    "distillery_name": "Ardbeg",
+    "region_name": "Islay",
+    "geo": "55.640556, -6.108611",
+    "town": "Ardbeg",
+    "parent_company": "Louis Vuitton Moet Hennessy"
+  },
+  {
+    "distillery_name": "Ardnahoe",
+    "region_name": "Islay",
+    "geo": "55.868985, -6.117463",
+    "town": "Port Askaig",
+    "parent_company": "Hunter Laing & Co."
+  },
+  {
+    "distillery_name": "Bowmore",
+    "region_name": "Islay",
+    "geo": "55.757139, -6.289844",
+    "town": "Loch Indaal",
+    "parent_company": "Beam Suntory"
+  },
+  {
+    "distillery_name": "Bruichladdich",
+    "region_name": "Islay",
+    "geo": "55.766359, -6.3625",
+    "town": "Rhinns",
+    "parent_company": "Remy Cointreau"
+  },
+  {
+    "distillery_name": "Bunnahabhain",
+    "region_name": "Islay",
+    "geo": "55.88323, -6.126261",
+    "town": "Bunnahabhain",
+    "parent_company": "Heineken"
+  },
+  {
+    "distillery_name": "Caol Ila",
+    "region_name": "Islay",
+    "geo": "55.85448, -6.109343",
+    "town": "Port Askaig",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Kilchoman",
+    "region_name": "Islay",
+    "geo": "55.786944, -6.430833",
+    "town": "Machir Bay",
+    "parent_company": "Kilchoman Distillery Co."
+  },
+  {
+    "distillery_name": "Lagavulin",
+    "region_name": "Islay",
+    "geo": "55.6355, -6.126194",
+    "town": "Lagavulin",
+    "parent_company": "Diageo"
+  },
+  {
+    "distillery_name": "Laphroaig",
+    "region_name": "Islay",
+    "geo": "55.63, -6.152222",
+    "town": "Port Ellen",
+    "parent_company": "Beam Suntory"
+  }
+]
