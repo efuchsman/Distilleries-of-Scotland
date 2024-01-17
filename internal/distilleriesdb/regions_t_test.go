@@ -85,7 +85,7 @@ func TestCreateRegion(t *testing.T) {
 			err = db.CreateRegionsTable()
 			require.NoError(t, err)
 
-			reg, err := db.GetOrCreateRegion(tc.testRegionName, tc.testDescription)
+			reg, err := db.CreateRegion(tc.testRegionName, tc.testDescription)
 			if tc.expectedErr != nil {
 				assert.Equal(t, tc.expectedErr, err)
 			} else {
@@ -129,7 +129,7 @@ func TestGetRegionByNameGood(t *testing.T) {
 			err = db.CreateRegionsTable()
 			require.NoError(t, err)
 
-			_, err = db.GetOrCreateRegion(tc.testRegionName, tc.testDescription)
+			_, err = db.CreateRegion(tc.testRegionName, tc.testDescription)
 			require.NoError(t, err)
 
 			reg, err := db.GetRegionByName(tc.testRegionName)

@@ -49,7 +49,7 @@ func TestAddRegion(t *testing.T) {
 			regionName:        "Test Region",
 			regionDescription: "Test Description",
 			dbclient: distilleriesdb.TestClient{
-				GetOrCreateRegionData: testDbRegion,
+				CreateRegionData: testDbRegion,
 			},
 			expectedOutput: &Region{RegionName: "Test Region", Description: "Test Description"},
 			expectedErr:    nil,
@@ -59,7 +59,7 @@ func TestAddRegion(t *testing.T) {
 			regionName:        "Test Region",
 			regionDescription: "Test Description",
 			dbclient: distilleriesdb.TestClient{
-				GetOrCreateRegionErr: distilleriesdb.ErrNoRows,
+				CreateRegionErr: distilleriesdb.ErrNoRows,
 			},
 			expectedErr: distilleriesdb.ErrNoRows,
 		},

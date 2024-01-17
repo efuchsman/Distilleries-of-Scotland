@@ -36,40 +36,70 @@ func (db *DistilleriesDB) CreateRegionsTable() error {
 	return nil
 }
 
-// CreateRegion gets an existing region or creates a new one in the Region table
-func (db *DistilleriesDB) GetOrCreateRegion(regionName string, description string) (*Region, error) {
+// CreateRegion creates a new region in the Regions table
+func (db *DistilleriesDB) CreateRegion(regionName string, description string) (*Region, error) {
 	db.mu.Lock()
 	defer db.mu.Unlock()
 
-	query := `
-        INSERT INTO Regions (region_name, description)
-        VALUES ($1, $2)
-        ON CONFLICT (region_name) DO NOTHING
-        RETURNING region_id;`
-
-	var regionID int
-	err := db.Conn.QueryRow(query, regionName, description).Scan(&regionID)
-	if err != nil && err != sql.ErrNoRows {
-		log.Errorf("failed to insert region: %v", err)
+	res, err := db.GetRegionByName(regionName)
+	if err != nil {
+		if err != ErrNoRows {
+			log.Errorf("error checking region existence: %v", err)
+			return nil, err
+		}
+	}
+	if res != nil {
+		log.Errorf("region %+v already exists", res)
 		return nil, err
 	}
 
-	if err == sql.ErrNoRows {
-		// Region already exists, retrieve it
-		existingRegion, err := db.GetRegionByName(regionName)
-		if err != nil {
-			return nil, err
+	tx, err := db.Conn.Begin()
+	if err != nil {
+		log.Errorf("failed to begin transaction: %v", err)
+		return nil, err
+	}
+	defer func() {
+		if err := tx.Rollback(); err != sql.ErrTxDone && err != nil {
+			log.Errorf("failed to rollback transaction: %v", err)
 		}
+	}()
 
-		if existingRegion != nil {
-			log.Printf("Region with name '%s' already exists", regionName)
-			return existingRegion, nil
-		}
+	reg := &Region{
+		RegionName:  regionName,
+		Description: description,
+	}
+
+	newRegion, err := db.createRegionTx(tx, reg)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := tx.Commit(); err != nil {
+		log.Errorf("failed to commit transaction: %v", err)
+		return nil, err
+	}
+
+	return newRegion, nil
+}
+
+func (db *DistilleriesDB) createRegionTx(tx *sql.Tx, r *Region) (*Region, error) {
+	query := `
+			INSERT INTO Regions (region_name, description)
+			VALUES ($1, $2)
+			ON CONFLICT (region_name) DO NOTHING
+			RETURNING region_id, region_name, description;`
+
+	var regionID int
+	var regionName, description string
+	err := tx.QueryRow(query, r.RegionName, r.Description).Scan(&regionID, &regionName, &description)
+	if err != nil && err != sql.ErrNoRows {
+		log.Errorf("failed to insert transactional region: %v", err)
+		return nil, err
 	}
 
 	newRegion := &Region{
-		RegionName:  regionName,
-		Description: description,
+		RegionName:  r.RegionName,
+		Description: r.Description,
 	}
 
 	fmt.Printf("Region inserted successfully with ID: %d\n", regionID)

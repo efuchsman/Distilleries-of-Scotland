@@ -6,11 +6,11 @@ import (
 	"sync"
 
 	"github.com/DATA-DOG/go-txdb"
-	_ "github.com/lib/pq" // Import other packages first
+	_ "github.com/lib/pq"
 )
 
 type Client interface {
-	GetOrCreateRegion(regionName string, description string) (*Region, error)
+	CreateRegion(regionName string, description string) (*Region, error)
 	GetRegionByName(regionName string) (*Region, error)
 	GetRegions() ([]Region, error)
 }

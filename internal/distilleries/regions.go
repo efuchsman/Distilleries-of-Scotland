@@ -20,7 +20,7 @@ type Regions struct {
 func (c *Client) AddRegion(regionName string, regionDescription string) (*Region, error) {
 	fields := log.Fields{"Region Name": regionName, "Region Description": regionDescription}
 
-	region, err := c.db.GetOrCreateRegion(regionName, regionDescription)
+	region, err := c.db.CreateRegion(regionName, regionDescription)
 	if err != nil {
 		log.WithFields(fields).Errorf("Error creating region: %+v", err)
 		return nil, errors.WithStack(err)
@@ -58,9 +58,19 @@ func (c *Client) SeedRegions(filePath string) error {
 	}
 
 	for _, region := range regions {
-		_, err := c.AddRegion(region.RegionName, region.Description)
+		resp, err := c.GetRegionByName(region.RegionName)
 		if err != nil {
-			return errors.WithStack(err)
+			log.Errorf("error checking region existence: %v", err)
+			return err
+		}
+
+		if resp != nil {
+			log.Printf("region %+v does not need to be seeded as it already exists", resp)
+		} else {
+			_, err = c.AddRegion(region.RegionName, region.Description)
+			if err != nil {
+				return errors.WithStack(err)
+			}
 		}
 	}
 
