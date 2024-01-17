@@ -4,6 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"sync"
+
+	"github.com/DATA-DOG/go-txdb"
+	_ "github.com/lib/pq" // Import other packages first
 )
 
 type Client interface {
@@ -13,12 +16,23 @@ type Client interface {
 }
 
 type DistilleriesDB struct {
-	Conn *sql.DB
-	mu   sync.Mutex
+	Conn  *sql.DB
+	TxDB  bool   // Flag to indicate whether to use txdb (only use for testing)
+	TxDrv string // Unique name for txdb registration
+	mu    sync.Mutex
 }
 
-func NewDistilleriesDb(connStr string) (*DistilleriesDB, error) {
-	db, err := sql.Open("postgres", connStr)
+func NewDistilleriesDb(connStr string, useTxDB bool, TxDrv string) (*DistilleriesDB, error) {
+	var db *sql.DB
+	var err error
+
+	if useTxDB {
+		txdb.Register(TxDrv, "postgres", connStr)
+		db, err = sql.Open(TxDrv, "")
+	} else {
+		db, err = sql.Open("postgres", connStr)
+	}
+
 	if err != nil {
 		return nil, err
 	}
@@ -30,12 +44,13 @@ func NewDistilleriesDb(connStr string) (*DistilleriesDB, error) {
 
 	fmt.Println("Connected to the database")
 	return &DistilleriesDB{
-		Conn: db,
-		mu:   sync.Mutex{},
+		Conn:  db,
+		TxDB:  useTxDB,
+		TxDrv: TxDrv,
+		mu:    sync.Mutex{},
 	}, nil
 }
 
-// Close closes the database connection
 func (db *DistilleriesDB) Close() {
 	db.Conn.Close()
 	fmt.Println("Closed the database connection")

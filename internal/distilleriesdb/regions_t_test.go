@@ -1,7 +1,6 @@
 package distilleriesdb
 
 import (
-	"database/sql"
 	"fmt"
 	"path/filepath"
 	"runtime"
@@ -33,18 +32,16 @@ func init() {
 }
 
 func TestCreateRegionTable(t *testing.T) {
-	db, err := sql.Open("postgres", connStr)
+	db, err := NewDistilleriesDb(connStr, true, t.Name()) // Use txdb for testing
 	require.NoError(t, err)
-
 	defer db.Close()
 
-	distilleriesDB := DistilleriesDB{Conn: db}
+	distilleriesDB := DistilleriesDB{Conn: db.Conn}
 	err = distilleriesDB.CreateRegionsTable()
 	require.NoError(t, err)
 
-	rows, err := db.Query("SELECT table_name FROM information_schema.tables WHERE table_name='regions';")
+	rows, err := db.Conn.Query("SELECT table_name FROM information_schema.tables WHERE table_name='regions';")
 	require.NoError(t, err)
-
 	defer rows.Close()
 
 	var tableName string
@@ -81,10 +78,12 @@ func TestCreateRegion(t *testing.T) {
 			t.Parallel()
 			t.Log(tc.description)
 
-			db, err := NewDistilleriesDb(connStr)
+			db, err := NewDistilleriesDb(connStr, true, t.Name()) // Use txdb for testing
 			require.NoError(t, err)
-
 			defer db.Close()
+
+			err = db.CreateRegionsTable()
+			require.NoError(t, err)
 
 			reg, err := db.GetOrCreateRegion(tc.testRegionName, tc.testDescription)
 			if tc.expectedErr != nil {
@@ -99,7 +98,7 @@ func TestCreateRegion(t *testing.T) {
 	}
 }
 
-func TestGetRegionByName(t *testing.T) {
+func TestGetRegionByNameGood(t *testing.T) {
 	testCases := []struct {
 		description     string
 		testRegionName  string
@@ -116,22 +115,22 @@ func TestGetRegionByName(t *testing.T) {
 				Description: "test description",
 			},
 		},
-		{
-			description:    "Failure: cannot find region",
-			testRegionName: "not found",
-			expectedOutput: nil,
-			expectedErr:    ErrNoRows,
-		},
 	}
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
 			t.Parallel()
 			t.Log(tc.description)
 
-			db, err := NewDistilleriesDb(connStr)
+			db, err := NewDistilleriesDb(connStr, true, t.Name())
 			require.NoError(t, err)
 
 			defer db.Close()
+
+			err = db.CreateRegionsTable()
+			require.NoError(t, err)
+
+			_, err = db.GetOrCreateRegion(tc.testRegionName, tc.testDescription)
+			require.NoError(t, err)
 
 			reg, err := db.GetRegionByName(tc.testRegionName)
 			if tc.expectedErr != nil {

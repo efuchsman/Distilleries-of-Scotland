@@ -38,7 +38,7 @@ func main() {
 	}
 
 	// Establish the database connection
-	db, err := distilleriesdb.NewDistilleriesDb(connStr)
+	db, err := distilleriesdb.NewDistilleriesDb(connStr, false, "")
 	if err != nil {
 		log.Fatalf("FAILURE OPENING DATABASE CONNECTION: %v", err)
 	}
