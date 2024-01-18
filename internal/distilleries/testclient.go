@@ -1,6 +1,7 @@
 package distilleries
 
 type TestClient struct {
+	DistilleriesClient
 	GetRegionByNameData *Region
 	GetRegionByNameErr  error
 

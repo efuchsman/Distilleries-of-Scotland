@@ -17,7 +17,7 @@ type Regions struct {
 	Regions []*Region `json:"regions"`
 }
 
-func (c *Client) AddRegion(regionName string, regionDescription string) (*Region, error) {
+func (c *DistilleriesClient) AddRegion(regionName string, regionDescription string) (*Region, error) {
 	fields := log.Fields{"Region Name": regionName, "Region Description": regionDescription}
 
 	region, err := c.db.CreateRegion(regionName, regionDescription)
@@ -50,7 +50,7 @@ func buildRegions(filePath string) ([]*Region, error) {
 	return regions, nil
 }
 
-func (c *Client) SeedRegions(filePath string) error {
+func (c *DistilleriesClient) SeedRegions(filePath string) error {
 	regions, err := buildRegions(filePath)
 	if err != nil {
 		log.Errorf("Error seeding Regions: %v", err)
@@ -77,7 +77,7 @@ func (c *Client) SeedRegions(filePath string) error {
 	return nil
 }
 
-func (c *Client) GetRegionByName(regionName string) (*Region, error) {
+func (c *DistilleriesClient) GetRegionByName(regionName string) (*Region, error) {
 	fields := log.Fields{"Region Name": regionName}
 
 	region, err := c.db.GetRegionByName(regionName)
@@ -94,7 +94,7 @@ func (c *Client) GetRegionByName(regionName string) (*Region, error) {
 	return distilleryRegion, nil
 }
 
-func (c *Client) GetRegions() (*Regions, error) {
+func (c *DistilleriesClient) GetRegions() (*Regions, error) {
 	regions, err := c.db.GetRegions()
 	if err != nil {
 		log.Errorf("Error fetching regions: %+v", err)

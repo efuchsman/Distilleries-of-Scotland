@@ -73,6 +73,8 @@ func write(w http.ResponseWriter, code int, data interface{}) {
 
 	if data != nil {
 		enc := json.NewEncoder(w)
+		enc.SetIndent("", "")
+		enc.SetEscapeHTML(false)
 		if err := enc.Encode(data); err != nil {
 			fields := log.Fields{"data": data, "code": code}
 			log.WithFields(fields).Errorf("%+v", err)
@@ -148,4 +150,8 @@ func BadRequest400(w http.ResponseWriter, resource, field string) {
 
 func NotFound404(w http.ResponseWriter, resource string) {
 	Err(w, NewNotFoundError(resource), 404)
+}
+
+func InternalError500(w http.ResponseWriter, resource string, err error) {
+	Err(w, NewInternalError(resource), 500)
 }

@@ -51,7 +51,7 @@ func main() {
 	}
 
 	// Seed regions to the database
-	dis := distilleries.NewClient(db)
+	dis := distilleries.NewDistilleriesClient(db)
 	filePath := "data/regions.json"
 	if err = dis.SeedRegions(filePath); err != nil {
 		log.Fatalf("Error seeding regions to the database: %v", err)

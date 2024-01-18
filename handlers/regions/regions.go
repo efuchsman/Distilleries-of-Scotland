@@ -1,7 +1,6 @@
 package regions
 
 import (
-	"encoding/json"
 	"net/http"
 	"strings"
 
@@ -12,10 +11,10 @@ import (
 )
 
 type Handler struct {
-	dis *distilleries.Client
+	dis distilleries.Client
 }
 
-func NewHandler(dis *distilleries.Client) *Handler {
+func NewHandler(dis distilleries.Client) *Handler {
 	return &Handler{
 		dis: dis,
 	}
@@ -26,13 +25,11 @@ func (h *Handler) GetRegions(w http.ResponseWriter, r *http.Request) {
 	regions, err := h.dis.GetRegions()
 	if err != nil {
 		log.Errorf("%+v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		apiresponses.InternalError500(w, "region", err)
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(regions)
+	apiresponses.OK200(w, regions)
 }
 
 func (h *Handler) GetRegion(w http.ResponseWriter, r *http.Request) {
@@ -51,7 +48,6 @@ func (h *Handler) GetRegion(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(region)
+	log.Printf("Region Data: %+v", region)
+	apiresponses.OK200(w, region)
 }

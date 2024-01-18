@@ -68,7 +68,7 @@ func TestAddRegion(t *testing.T) {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
 			t.Log(tc.description)
 			t.Parallel()
-			c := NewClient(tc.dbclient)
+			c := NewDistilleriesClient(tc.dbclient)
 
 			newRegion, err := c.AddRegion(tc.regionName, tc.regionDescription)
 			if tc.expectedErr != nil {
@@ -122,6 +122,52 @@ func TestBuildRegions(t *testing.T) {
 	}
 }
 
+func TestGetRegions(t *testing.T) {
+	testCases := []struct {
+		description   string
+		dbclient      distilleriesdb.TestClient
+		expectedCount int
+		expectedErr   error
+	}{
+		{
+			description: "Success: Region is returned",
+			dbclient: distilleriesdb.TestClient{
+				GetRegionsData: []distilleriesdb.Region{
+					*testDbRegion,
+				},
+			},
+			expectedCount: 1,
+			expectedErr:   nil,
+		},
+
+		{
+			description: "Failure: Region cannot be found",
+			dbclient: distilleriesdb.TestClient{
+				GetRegionsErr: distilleriesdb.ErrNoRows,
+			},
+			expectedCount: 0,
+			expectedErr:   distilleriesdb.ErrNoRows,
+		},
+	}
+	for i, tc := range testCases {
+		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
+			t.Log(tc.description)
+			t.Parallel()
+
+			c := NewDistilleriesClient(tc.dbclient)
+
+			regions, err := c.GetRegions()
+			if tc.expectedErr != nil {
+				assert.Error(t, err, tc.description)
+				return
+			}
+
+			assert.NoError(t, err, tc.description)
+			assert.Equal(t, tc.expectedCount, len(regions.Regions))
+		})
+	}
+}
+
 func TestGetRegionByName(t *testing.T) {
 	testCases := []struct {
 		description    string
@@ -155,7 +201,7 @@ func TestGetRegionByName(t *testing.T) {
 			t.Log(tc.description)
 			t.Parallel()
 
-			c := NewClient(tc.dbclient)
+			c := NewDistilleriesClient(tc.dbclient)
 
 			newRegion, err := c.GetRegionByName(tc.regionName)
 			if tc.expectedErr != nil {
