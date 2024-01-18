@@ -13,6 +13,7 @@ type Client interface {
 	CreateRegion(regionName string, description string) (*Region, error)
 	GetRegionByName(regionName string) (*Region, error)
 	GetRegions() ([]Region, error)
+	CreateDistillery(distilleryName, regionName, geo, town, parentCompany string) (*Distillery, error)
 }
 
 type DistilleriesDB struct {
