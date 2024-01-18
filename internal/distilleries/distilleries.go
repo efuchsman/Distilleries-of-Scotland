@@ -7,6 +7,7 @@ import (
 type Service interface {
 	SeedRegions(filePath string) error
 	GetRegions() (*Regions, error)
+	GetRegionByName(regionName string) (*Region, error)
 }
 
 type Client struct {

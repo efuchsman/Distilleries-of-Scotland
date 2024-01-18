@@ -65,7 +65,8 @@ func main() {
 	})
 
 	distilleryRegions := regions.NewHandler(dis)
-	router.HandleFunc("/regions", distilleryRegions.Get).Methods("GET")
+	router.HandleFunc("/regions", distilleryRegions.GetRegions).Methods("GET")
+	router.HandleFunc("/regions/{region_name}", distilleryRegions.GetRegion).Methods("GET")
 
 	// Start the HTTP server in a goroutine
 	go func(connStr string) {

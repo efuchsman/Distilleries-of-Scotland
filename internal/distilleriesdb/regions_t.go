@@ -108,10 +108,11 @@ func (db *DistilleriesDB) createRegionTx(tx *sql.Tx, r *Region) (*Region, error)
 
 // getRegionByName retrieves a region by its name
 func (db *DistilleriesDB) GetRegionByName(regionName string) (*Region, error) {
+
 	query := `
 		SELECT region_name, description
 		FROM Regions
-		WHERE region_name = $1;`
+		WHERE LOWER(region_name) = LOWER($1);`
 
 	var region Region
 	err := db.Conn.QueryRow(query, regionName).Scan(&region.RegionName, &region.Description)

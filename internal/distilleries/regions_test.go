@@ -139,6 +139,16 @@ func TestGetRegionByName(t *testing.T) {
 			expectedOutput: &Region{RegionName: "Test Region", Description: "Test Description"},
 			expectedErr:    nil,
 		},
+
+		{
+			description: "Failure: Region cannot be found",
+			regionName:  "Test Region",
+			dbclient: distilleriesdb.TestClient{
+				GetRegionByNameErr: distilleriesdb.ErrNoRows,
+			},
+			expectedOutput: nil,
+			expectedErr:    distilleriesdb.ErrNoRows,
+		},
 	}
 	for i, tc := range testCases {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
