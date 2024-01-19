@@ -154,3 +154,38 @@ func (db *DistilleriesDB) GetRegions() ([]Region, error) {
 
 	return regions, nil
 }
+
+func (db *DistilleriesDB) GetRegionalDistilleries(regionName string) ([]Distillery, error) {
+	query := `
+	SELECT Distilleries.distillery_name, Distilleries.region_name, Distilleries.geo, Distilleries.town, Distilleries.parent_company
+	FROM Distilleries
+	INNER JOIN Regions
+	ON Distilleries.region_name = Regions.region_name
+	WHERE LOWER(Distilleries.region_name) = LOWER($1);
+	`
+
+	rows, err := db.Conn.Query(query, regionName)
+	if err != nil {
+		log.Errorf("failed to get regions: %v", err)
+		return nil, err
+	}
+	defer rows.Close()
+
+	var distilleries []Distillery
+
+	for rows.Next() {
+		var distillery Distillery
+		if err := rows.Scan(&distillery.DistilleryName, &distillery.RegionName, &distillery.Geo, &distillery.Town, &distillery.ParentCompany); err != nil {
+			log.Errorf("failed to scan region row: %v", err)
+			return nil, err
+		}
+		distilleries = append(distilleries, distillery)
+	}
+
+	if err := rows.Err(); err != nil {
+		log.Errorf("error iterating over distilleries rows: %v", err)
+		return nil, err
+	}
+
+	return distilleries, nil
+}
