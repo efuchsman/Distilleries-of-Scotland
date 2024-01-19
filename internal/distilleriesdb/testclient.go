@@ -15,6 +15,9 @@ type TestClient struct {
 
 	GetRegionalDistilleriesData []Distillery
 	GetRegionalDistilleriesErr  error
+
+	GetDistilleryByNameData *Distillery
+	GetDistilleryByNameErr  error
 }
 
 func (c TestClient) CreateRegion(regionName string, description string) (*Region, error) {
@@ -35,4 +38,8 @@ func (c TestClient) CreateDistillery(distilleryName, regionName, geo, town, pare
 
 func (c TestClient) GetRegionalDistilleries(regionName string) ([]Distillery, error) {
 	return c.GetRegionalDistilleriesData, c.GetRegionalDistilleriesErr
+}
+
+func (c TestClient) GetDistilleryByName(distilleryName string) (*Distillery, error) {
+	return c.GetDistilleryByNameData, c.GetDistilleryByNameErr
 }

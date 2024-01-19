@@ -33,7 +33,7 @@ func (c *DistilleriesClient) AddRegion(regionName string, regionDescription stri
 	return distilleryRegion, nil
 }
 
-// Helper which builds a cities slice
+// Helper which builds a regions slice
 func buildRegions(filePath string) ([]*Region, error) {
 	jsonData, err := ioutil.ReadFile(filePath)
 	if err != nil {
