@@ -58,19 +58,10 @@ func (c *DistilleriesClient) SeedRegions(filePath string) error {
 	}
 
 	for _, region := range regions {
-		resp, err := c.GetRegionByName(region.RegionName)
+		_, err := c.AddRegion(region.RegionName, region.Description)
 		if err != nil {
-			log.Errorf("error checking region existence: %v", err)
-			return err
-		}
-
-		if resp != nil {
-			log.Printf("region %+v does not need to be seeded as it already exists", resp)
-		} else {
-			_, err = c.AddRegion(region.RegionName, region.Description)
-			if err != nil {
-				return errors.WithStack(err)
-			}
+			log.Errorf("error seeding region %+v: %v", region, err)
+			return errors.WithStack(err)
 		}
 	}
 

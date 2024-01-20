@@ -41,16 +41,16 @@ func (db *DistilleriesDB) CreateRegion(regionName string, description string) (*
 	db.mu.Lock()
 	defer db.mu.Unlock()
 
-	res, err := db.GetRegionByName(regionName)
-	if err != nil {
-		if err != ErrNoRows {
-			log.Errorf("error checking region existence: %v", err)
-			return nil, err
-		}
-	}
-	if res != nil {
-		log.Errorf("region %+v already exists", res)
+	// Check if the region already exists
+	existingRegion, err := db.GetRegionByName(regionName)
+	if err != nil && err != ErrNoRows {
+		log.Errorf("error checking region existence: %v", err)
 		return nil, err
+	}
+
+	if existingRegion != nil {
+		log.Infof("region %+v already exists", existingRegion)
+		return existingRegion, nil
 	}
 
 	tx, err := db.Conn.Begin()
@@ -64,12 +64,12 @@ func (db *DistilleriesDB) CreateRegion(regionName string, description string) (*
 		}
 	}()
 
-	reg := &Region{
+	newRegion := &Region{
 		RegionName:  regionName,
 		Description: description,
 	}
 
-	newRegion, err := db.createRegionTx(tx, reg)
+	createdRegion, err := db.createRegionTx(tx, newRegion)
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +79,7 @@ func (db *DistilleriesDB) CreateRegion(regionName string, description string) (*
 		return nil, err
 	}
 
-	return newRegion, nil
+	return createdRegion, nil
 }
 
 func (db *DistilleriesDB) createRegionTx(tx *sql.Tx, r *Region) (*Region, error) {

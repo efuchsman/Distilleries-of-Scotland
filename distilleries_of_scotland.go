@@ -44,16 +44,27 @@ func main() {
 	}
 	defer db.Close()
 
-	// Create the Region table
+	// Create the Regions table
 	err = db.CreateRegionsTable()
 	if err != nil {
 		log.Fatalf("FAILURE TO CREATE REGION TABLE: %v", err)
 	}
 
+	// Create the Distilleries table
+	err = db.CreateDistilleriesTable()
+	if err != nil {
+		log.Fatalf("FAILURE TO CREATE DISTILLERIES TABLE: %v", err)
+	}
+
 	// Seed regions to the database
 	dis := distilleries.NewDistilleriesClient(db)
-	filePath := "data/regions.json"
-	if err = dis.SeedRegions(filePath); err != nil {
+	regionsFilePath := "data/regions.json"
+	if err = dis.SeedRegions(regionsFilePath); err != nil {
+		log.Fatalf("Error seeding regions to the database: %v", err)
+	}
+
+	distilleriesFilePath := "data/distilleries.json"
+	if err = dis.SeedDistilleries(distilleriesFilePath); err != nil {
 		log.Fatalf("Error seeding regions to the database: %v", err)
 	}
 

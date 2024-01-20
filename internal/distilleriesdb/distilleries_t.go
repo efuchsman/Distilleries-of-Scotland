@@ -41,16 +41,15 @@ func (db *DistilleriesDB) CreateDistillery(distilleryName, regionName, geo, town
 	db.mu.Lock()
 	defer db.mu.Unlock()
 
-	res, err := db.GetDistilleryByName(distilleryName)
-	if err != nil {
-		if err != ErrNoRows {
-			log.Errorf("error checking distillery existence: %v", err)
-			return nil, err
-		}
-	}
-	if res != nil {
-		log.Errorf("distillery %+v already exists", res)
+	existingDistillery, err := db.GetDistilleryByName(distilleryName)
+	if err != nil && err != ErrNoRows {
+		log.Errorf("error checking distillery existence: %v", err)
 		return nil, err
+	}
+
+	if existingDistillery != nil {
+		log.Infof("distillery %+v already exists", existingDistillery)
+		return existingDistillery, nil
 	}
 
 	tx, err := db.Conn.Begin()
@@ -64,7 +63,7 @@ func (db *DistilleriesDB) CreateDistillery(distilleryName, regionName, geo, town
 		}
 	}()
 
-	dis := &Distillery{
+	newDistillery := &Distillery{
 		DistilleryName: distilleryName,
 		RegionName:     regionName,
 		Geo:            geo,
@@ -72,7 +71,7 @@ func (db *DistilleriesDB) CreateDistillery(distilleryName, regionName, geo, town
 		ParentCompany:  parentCompany,
 	}
 
-	newDistillery, err := db.createDistilleryTx(tx, dis)
+	createdDistillery, err := db.createDistilleryTx(tx, newDistillery)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +81,7 @@ func (db *DistilleriesDB) CreateDistillery(distilleryName, regionName, geo, town
 		return nil, err
 	}
 
-	return newDistillery, nil
+	return createdDistillery, nil
 }
 
 func (db *DistilleriesDB) createDistilleryTx(tx *sql.Tx, d *Distillery) (*Distillery, error) {
