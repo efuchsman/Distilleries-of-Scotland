@@ -4,7 +4,6 @@ go 1.21
 
 require (
 	github.com/DATA-DOG/go-txdb v0.1.8
-	github.com/go-sql-driver/mysql v1.7.1
 	github.com/gorilla/mux v1.8.1
 	github.com/lib/pq v1.10.9
 	github.com/pkg/errors v0.9.1

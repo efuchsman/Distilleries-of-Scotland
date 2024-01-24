@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	disH "github.com/efuchsman/distilleries_of_scotland/handlers/distilleries"
 	"github.com/efuchsman/distilleries_of_scotland/handlers/regions"
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleries"
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleriesdb"
@@ -78,6 +79,9 @@ func main() {
 	distilleryRegions := regions.NewHandler(dis)
 	router.HandleFunc("/regions", distilleryRegions.GetRegions).Methods("GET")
 	router.HandleFunc("/regions/{region_name}", distilleryRegions.GetRegion).Methods("GET")
+
+	regionalDistilleries := disH.NewHandler(dis)
+	router.HandleFunc("/regions/{region_name}/distilleries", regionalDistilleries.GetRegionalDistilleries).Methods("GET")
 
 	// Start the HTTP server in a goroutine
 	go func(connStr string) {

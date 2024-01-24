@@ -7,6 +7,9 @@ type TestClient struct {
 
 	GetRegionsData *Regions
 	GetRegionsErr  error
+
+	GetRegionalDistilleriesData *RegionalDistilleries
+	GetRegionalDistilleriesErr  error
 }
 
 func (c TestClient) GetRegionByName(regionName string) (*Region, error) {
@@ -15,4 +18,8 @@ func (c TestClient) GetRegionByName(regionName string) (*Region, error) {
 
 func (c TestClient) GetRegions() (*Regions, error) {
 	return c.GetRegionsData, c.GetRegionsErr
+}
+
+func (c TestClient) GetRegionalDistilleries(regionName string) (*RegionalDistilleries, error) {
+	return c.GetRegionalDistilleriesData, c.GetRegionalDistilleriesErr
 }
