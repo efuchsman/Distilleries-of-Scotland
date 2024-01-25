@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/efuchsman/distilleries_of_scotland/cors"
+	"github.com/efuchsman/distilleries_of_scotland/config/cors"
 	disH "github.com/efuchsman/distilleries_of_scotland/handlers/distilleries"
 	"github.com/efuchsman/distilleries_of_scotland/handlers/regions"
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleries"
