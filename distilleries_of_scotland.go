@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 
+	"github.com/efuchsman/distilleries_of_scotland/cors"
 	disH "github.com/efuchsman/distilleries_of_scotland/handlers/distilleries"
 	"github.com/efuchsman/distilleries_of_scotland/handlers/regions"
 	"github.com/efuchsman/distilleries_of_scotland/internal/distilleries"
@@ -83,20 +83,14 @@ func main() {
 	regionalDistilleries := disH.NewHandler(dis)
 	router.HandleFunc("/regions/{region_name}/distilleries", regionalDistilleries.GetRegionalDistilleries).Methods("GET")
 
-	// Start the HTTP server in a goroutine
-	go func(connStr string) {
-		port := 8000
-		fmt.Printf("Server is running on :%d\n", port)
-		if err := http.ListenAndServe(fmt.Sprintf(":%d", port), router); err != nil {
-			log.Fatalf("Error starting server: %v", err)
-		}
-	}(connStr)
+	handler := cors.SetCORSHeader(router)
+
+	// Start the HTTP server
+	port := 8000
+	fmt.Printf("Server is running on :%d\n", port)
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", port), handler); err != nil {
+		log.Fatalf("Error starting server: %v", err)
+	}
 
 	fmt.Println("Application started successfully")
-
-	// Keep the program running for a while to observe logs
-	select {
-	case <-time.After(time.Minute * 5):
-		fmt.Println("Exiting the application after 5 minutes")
-	}
 }
