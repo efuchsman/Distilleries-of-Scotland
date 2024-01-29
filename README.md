@@ -55,7 +55,7 @@
 - run: `go mod tidy`
 - run: `chmod +x startup.sh`
 - From the root of the directory, run: `./startup.sh`
-- To use MiniKube, run: `chmod +x deploy.sh`, followed by `./deploy.sh`
+- To use MiniKube, first run `miniKube start --profile=distilleries-of-scotland`, then run: `chmod +x deploy.sh`, followed by `./deploy.sh`
 - To see the API on localhost, run: `kubectl port-forward service/distilleries-of-scotland-service 8000:8000`
 
 - To run locally without MiniKube, run: `go run distilleries_of_scotland.go`
